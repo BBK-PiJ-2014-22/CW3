@@ -2,8 +2,21 @@
 public class TestCW3 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		TestCW3 test = new TestCW3();
+		test.launch();
+	}
+	
+	public void launch(){
+		
+		
+		
 	}
 
+	
+	public void testEnum(){
+		
+	}
+	
+	
+	
 }
