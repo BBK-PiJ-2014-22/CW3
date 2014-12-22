@@ -2,7 +2,7 @@
 public class ReturnObjectImpl implements ReturnObject {
 
 	private ErrorMessage error;
-	private Object returnValue;
+	public Object returnValue;
 	
 	//Must 
 	public ReturnObjectImpl(Object entry, ErrorMessage error){
@@ -28,6 +28,11 @@ public class ReturnObjectImpl implements ReturnObject {
 		}else{
 			return returnValue;
 		}
+	}
+	
+	@Override
+	public String toString(){
+		return "[Return Value: "+this.returnValue+", Error Message: "+this.error+", Has Error: "+this.hasError()+"]";
 	}
 
 }
