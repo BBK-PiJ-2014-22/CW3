@@ -8,8 +8,19 @@ public class TestCW3 {
 	
 	public void launch(){
 		
-		testReturnObjectImpl(new ReturnObjectImpl("String", ErrorMessage.NO_ERROR),"String", ErrorMessage.NO_ERROR, false, "Testing test failure");
-	
+		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.NO_ERROR)			,"str"	, ErrorMessage.NO_ERROR			,false, "Return Object Test 1 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl(1		, ErrorMessage.NO_ERROR)			,1		, ErrorMessage.NO_ERROR			,false, "Return Object Test 2 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl(1.0	, ErrorMessage.NO_ERROR)			,1.0	, ErrorMessage.NO_ERROR			,false, "Return Object Test 3 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl(true	, ErrorMessage.NO_ERROR)			,true	, ErrorMessage.NO_ERROR			,false, "Return Object Test 4 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl(null	, ErrorMessage.NO_ERROR)			,null	, ErrorMessage.NO_ERROR			,false, "Return Object Test 5 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.EMPTY_STRUCTURE)		,null	, ErrorMessage.EMPTY_STRUCTURE	,true, 	"Return Object Test 6 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INDEX_OUT_OF_BOUNDS)	,null	, ErrorMessage.INDEX_OUT_OF_BOUNDS,true,"Return Object Test 7 Failed");
+		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INVALID_ARGUMENT)	,null	, ErrorMessage.INVALID_ARGUMENT	,true,	"Return Object Test 8 Failed");
+
+		
+		
+		
+		
 		
 		System.out.println("Tests Complete");
 	}
@@ -33,8 +44,8 @@ public class TestCW3 {
 		}
 		
 		//tests that the return object is returning correctly
-		if ((object == null && testObject.getReturnValue() != object)||
-			 !object.equals(testObject.getReturnValue())){
+		if ((object == null && testObject.getReturnValue() != null)||
+			 object != null && !object.equals(testObject.getReturnValue())){
 			getReturnValueTestFail = true;
 		}
 		
