@@ -24,14 +24,14 @@ public class TestCW3 {
 		System.out.println(testarray.add("foo"));
 		System.out.println(testarray.add("bar"));
 		System.out.println(testarray.add("bar"));
-		System.out.println(testarray.size);
-		System.out.println(testarray.array.length);
 		System.out.println(testarray.add(2,"fel"));
 		System.out.println(testarray.add(2,"fel2"));
-
+		System.out.println(testarray.get(2));
+		System.out.println(testarray.get(3));
+		System.out.println(testarray.get(7));
 		System.out.println(testarray.size());
-		System.out.println(testarray.array.length);
-		
+		System.out.println(testarray.remove(3));
+		System.out.println(testarray.size());		
 		
 		System.out.println("Tests Complete");
 	}

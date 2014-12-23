@@ -1,8 +1,8 @@
 
 public class ArrayList implements List {
 	
-	public Object[] array;
-	public int size;
+	private Object[] array;
+	private int size;
 	
 	public ArrayList(){
 		array = new Object[1];
@@ -25,22 +25,36 @@ public class ArrayList implements List {
 
 	@Override
 	public ReturnObject get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if (checkOutOfBounds(index)){
+			return outOfBoundsError();
+		}else{
+			return new ReturnObjectImpl(array[index], ErrorMessage.NO_ERROR);
+		}
 	}
 
 	@Override
 	public ReturnObject remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if (checkOutOfBounds(index)){
+			return outOfBoundsError();
+		}else{
+			Object toReturn = this.array[index];
+			int shuffle = index+1;
+			do{
+				this.array[shuffle-1] = this.array[shuffle];
+				shuffle++;
+			}while (this.array[shuffle] != null);
+			
+			size --;
+			return new ReturnObjectImpl(toReturn, ErrorMessage.NO_ERROR);		
+		}
 	}
 
 	@Override
 	public ReturnObject add(int index, Object item) {
 		if (item == null){
 			return new ReturnObjectImpl(item, ErrorMessage.INVALID_ARGUMENT);
-		}else if (index >= this.size || index < 0){
-			return new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}else if (checkOutOfBounds(index)){
+			return outOfBoundsError();
 		}else{
 			this.checkSize();
 			int shuffle = size;
@@ -81,5 +95,20 @@ public class ArrayList implements List {
 			this.array = newArray;
 		}
 	}
+	
+	/** Tests if an index is out of bounds. Used in most methods*/
+	private boolean checkOutOfBounds(int index){
+		if (index >= this.size || index < 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	/** Return object for when an index is out of bounds*/
+	private ReturnObjectImpl outOfBoundsError(){
+		return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+	}
+	
 	
 }
