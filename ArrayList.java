@@ -1,8 +1,8 @@
 
 public class ArrayList implements List {
 	
-	private Object[] array;
-	private int size;
+	public Object[] array;
+	public int size;
 	
 	public ArrayList(){
 		array = new Object[1];
@@ -37,16 +37,30 @@ public class ArrayList implements List {
 
 	@Override
 	public ReturnObject add(int index, Object item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (item == null){
+			return new ReturnObjectImpl(item, ErrorMessage.INVALID_ARGUMENT);
+		}else if (index >= this.size || index < 0){
+			return new ReturnObjectImpl(item, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}else{
+			this.checkSize();
+			int shuffle = size;
+			do{
+				this.array[shuffle] = this.array[shuffle-1];
+				shuffle = shuffle-1;
+			}while(!(shuffle <= index));
+			
+			this.array[index] = item;
+			this.size ++;
+			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);	
+		}
 	}
 
 	@Override
 	public ReturnObject add(Object item) {
-		this.checkSize();
 		if (item == null){
 			return new ReturnObjectImpl(item, ErrorMessage.INVALID_ARGUMENT);
 		}else{
+			this.checkSize();
 			this.array[size] = item;
 			this.size ++;
 			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);

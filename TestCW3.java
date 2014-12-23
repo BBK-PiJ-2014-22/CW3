@@ -22,9 +22,16 @@ public class TestCW3 {
 	
 		System.out.println(testarray.add(null));
 		System.out.println(testarray.add("foo"));
-		System.out.println(testarray.size());
 		System.out.println(testarray.add("bar"));
+		System.out.println(testarray.add("bar"));
+		System.out.println(testarray.size);
+		System.out.println(testarray.array.length);
+		System.out.println(testarray.add(2,"fel"));
+		System.out.println(testarray.add(2,"fel2"));
+
 		System.out.println(testarray.size());
+		System.out.println(testarray.array.length);
+		
 		
 		System.out.println("Tests Complete");
 	}
