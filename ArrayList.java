@@ -14,10 +14,10 @@ public class ArrayList implements List {
 		
 		String result = "[";
 	
-		for (int i = 0; i < this.size ; i++){
+		for (int i = 0; i < this.size-1 ; i++){
 			result += i +":"+array[i]+", ";
 		}
-		result += "]";
+		result += size-1+":"+array[size-1]+"]";
 		return result;
 	}
 	

@@ -17,8 +17,10 @@ public class TestCW3 {
 		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INDEX_OUT_OF_BOUNDS)	,null	, ErrorMessage.INDEX_OUT_OF_BOUNDS,true,"Return Object Test 7 Failed");
 		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INVALID_ARGUMENT)	,null	, ErrorMessage.INVALID_ARGUMENT	,true,	"Return Object Test 8 Failed");
 
-		
-
+		testList("Dummy List", new DummyList());
+		testList("Array List", new ArrayList());
+		testList("Linked List", new LinkedList());		
+	
 	}
 
 	
@@ -64,15 +66,42 @@ public class TestCW3 {
 	}
 	
 	
-	public void listSizeTest(List list){
+	public void testList(String tag, List list){
 		
-		for (int i = 0; i < 10 ; i++){
-			list.add(i);
+		ReturnObject testReturnObject = new ReturnObjectImpl (null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		
+		
+		//Builds a list of numbers 0 to 9
+		for (int i = 0; i < 10 ; i++)
+			testReturnObject = list.add(i);
+		
+		if (!list.toString().equals("[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"))
+			System.out.println(tag+" add (no index) test 1 failed - output string does not match");
+		
+		if (testReturnObject.getReturnValue() != null || 
+			testReturnObject.getError() != ErrorMessage.NO_ERROR){
+			System.out.println(tag+" add (no index) test 1 failed - return object incorrect. Displaying:");
+			System.out.println(testReturnObject);
 		}
+			
+		testListSize(list, tag, 10, 1);
+		
+		testReturnObject = list.add(2, "two");
+		
+		if (!list.toString().equals("[0:0, 1:1, 2:Two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]"))
+			System.out.println(tag+" add (index) test 1 failed");
+
+		
+		
 		
 		
 		
 	}
 	
-	
+	void testListSize(List list, String tag, int size, int testnum){
+		if (list.size() != size){
+			System.out.println(tag+"size test "+testnum+" failed");
+			System.out.println(list.size() + " != "+size);
+		}
+	}
 }
