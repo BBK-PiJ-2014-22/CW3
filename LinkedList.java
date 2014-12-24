@@ -37,7 +37,13 @@ public class LinkedList implements List {
 	public ReturnObject remove(int index) {
 		if (head == null){
 			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
-		}else{
+		}else if (index == 0){
+			LinkedListNode removed = head;
+			head = head.next;
+			head.shuffleRight();
+			return new ReturnObjectImpl(removed.value,ErrorMessage.NO_ERROR);
+		}
+		else{
 			return head.remove(index);
 		}
 	}

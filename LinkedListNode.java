@@ -20,13 +20,24 @@ public class LinkedListNode {
 	}
 
 	public ReturnObject get(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.position == index){
+			return new ReturnObjectImpl(this.value, ErrorMessage.NO_ERROR);
+		}else if (this.next != null){
+			return this.next.get(index);
+		}else{
+			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}
 	}
 
 	public ReturnObject remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.next.position == index){
+			LinkedListNode removed = this.next;
+			this.next = this.next.next;
+			this.next.shuffleRight();
+			return new ReturnObjectImpl(removed.value, ErrorMessage.NO_ERROR);
+		}else{
+			return this.next.remove(index);
+		}
 	}
 
 	public ReturnObject add(int index, Object item) {
@@ -40,12 +51,18 @@ public class LinkedListNode {
 	}
 	
 	//Moves all nodes 1 position to the right
-	private void shuffleRight(){
-		
+	void shuffleRight(){
+		this.position ++;
+		if (this.next != null){
+			this.next.shuffleRight();
+		}
 	}
 	
 	//Moves all nodes 1 position to the left
-	private void shuffleLeft(){
-		
+	void shuffleLeft(){
+		this.position --;
+		if (this.next != null){
+			this.next.shuffleLeft();
+		}
 	}
 }

@@ -18,7 +18,7 @@ public class TestCW3 {
 		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INVALID_ARGUMENT)	,null	, ErrorMessage.INVALID_ARGUMENT	,true,	"Return Object Test 8 Failed");
 
 		
-		ArrayList testarray = new ArrayList();
+		List testarray = new LinkedList();
 	
 		System.out.println(testarray.add(null));
 		System.out.println(testarray.add("foo"));
@@ -78,6 +78,10 @@ public class TestCW3 {
 		
 	}
 	
+	
+	public void listSizeTest(List list, int size ){
+		
+	}
 	
 	
 }
