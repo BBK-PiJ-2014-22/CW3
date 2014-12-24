@@ -11,6 +11,15 @@ public class LinkedListNode {
 		this.next = null;
 	}
 	
+	@Override
+	public String toString(){
+		if (this.next == null){
+			return this.position +":"+this.value.toString();
+		}else{
+			return this.position+":"+this.value.toString()+", "+this.next.toString();
+		}
+	}
+	
 	public int size(){ 
 		if (this.next == null){
 			return this.position+1;
@@ -41,13 +50,26 @@ public class LinkedListNode {
 	}
 
 	public ReturnObject add(int index, Object item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.next == null){
+			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}else if (this.next.position == index){
+			LinkedListNode newNode = new LinkedListNode(this.position+1, item);
+			newNode.next = this.next;
+			this.next = newNode;
+			newNode.next.shuffleRight();
+			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+		}else{
+			return this.next.add(index, item);			
+		}
 	}
 
 	public ReturnObject add(Object item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (this.next == null){
+			this.next = new LinkedListNode(this.position+1, item);
+			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+		}else{
+			return this.next.add(item);
+		}
 	}
 	
 	//Moves all nodes 1 position to the right

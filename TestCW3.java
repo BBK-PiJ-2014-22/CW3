@@ -18,22 +18,7 @@ public class TestCW3 {
 		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INVALID_ARGUMENT)	,null	, ErrorMessage.INVALID_ARGUMENT	,true,	"Return Object Test 8 Failed");
 
 		
-		List testarray = new LinkedList();
-	
-		System.out.println(testarray.add(null));
-		System.out.println(testarray.add("foo"));
-		System.out.println(testarray.add("bar"));
-		System.out.println(testarray.add("bar"));
-		System.out.println(testarray.add(2,"fel"));
-		System.out.println(testarray.add(2,"fel2"));
-		System.out.println(testarray.get(2));
-		System.out.println(testarray.get(3));
-		System.out.println(testarray.get(7));
-		System.out.println(testarray.size());
-		System.out.println(testarray.remove(3));
-		System.out.println(testarray.size());		
-		
-		System.out.println("Tests Complete");
+
 	}
 
 	
@@ -79,7 +64,13 @@ public class TestCW3 {
 	}
 	
 	
-	public void listSizeTest(List list, int size ){
+	public void listSizeTest(List list){
+		
+		for (int i = 0; i < 10 ; i++){
+			list.add(i);
+		}
+		
+		
 		
 	}
 	

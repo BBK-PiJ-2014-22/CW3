@@ -7,6 +7,10 @@ public class LinkedList implements List {
 		head = null;
 	}
 	
+	@Override
+	public String toString(){
+		return "["+head+"]";
+	}
 	
 	@Override
 	public boolean isEmpty() {

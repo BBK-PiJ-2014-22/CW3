@@ -10,6 +10,18 @@ public class ArrayList implements List {
 	}
 	
 	@Override
+	public String toString(){
+		
+		String result = "[";
+	
+		for (int i = 0; i < this.size ; i++){
+			result += i +":"+array[i]+", ";
+		}
+		result += "]";
+		return result;
+	}
+	
+	@Override
 	//If any element of the list is filled, the first element will be filled
 	public boolean isEmpty() {
 		if (this.array[0] == null) 
