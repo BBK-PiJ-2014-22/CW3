@@ -69,65 +69,23 @@ public class TestCW3 {
 	public void testList(String tag, List list){
 		
 		ReturnObject returnedObject = new ReturnObjectImpl (null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
-		String match;
 		String currentTest = tag+ "isEmpty intial test";
-		
-		testListIsEmpty(list, true, currentTest);
 	
-		currentTest = tag+" add (no index) 1";
-		for (int i = 0; i < 10 ; i++)
+		testListIsEmpty(list, true, currentTest);
+		
+		for (int i = 0; i < 9 ; i++)
 			returnedObject = list.add(i);
-		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.NO_ERROR, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 10);
-		testListIsEmpty(list, false, currentTest);
 		
-		currentTest = tag+" add (no index) 2";
-		returnedObject = list.add(null);
-		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INVALID_ARGUMENT, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 10);
-		testListIsEmpty(list, false, currentTest);
-			
-		currentTest = tag+" add (index) 1";
-		returnedObject = list.add(2, "two");
-		testListMatch(list,"[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.NO_ERROR, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 11);
-		testListIsEmpty(list, false, currentTest);
-
-		currentTest = tag+" add (index) 2";
-		returnedObject = list.add(12, "twelve");
-		testListMatch(list,"[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 11);
-		testListIsEmpty(list, false, currentTest);	
-
-		currentTest = tag+" add (index) 3";
-		returnedObject = list.add(-1, "minus one");
-		testListMatch(list,"[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 11);
-		testListIsEmpty(list, false, currentTest);
-
 		
-		//TODO - make this a null insert
-		currentTest = tag+" add (index) 3";
-		returnedObject = list.add(-1, "minus one");
-		testListMatch(list,"[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 11);
-		testListIsEmpty(list, false, currentTest);
+		testListPart(list,  tag+" add (no index) 1"	, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.add(9)			 , null, ErrorMessage.NO_ERROR);
+		testListPart(list,  tag+" add (no index) 2"	, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.add(null)		 , null, ErrorMessage.INVALID_ARGUMENT);
+		testListPart(list,  tag+" add (index) 1"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(2,"two")	 , null, ErrorMessage.NO_ERROR);
+		testListPart(list,  tag+" add (index) 2"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(12,"twelve"), null, ErrorMessage.INVALID_ARGUMENT);
+		testListPart(list,  tag+" add (index) 3"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(-1,"-one")	 , null, ErrorMessage.INVALID_ARGUMENT);
+		testListPart(list,  tag+" add (index) 4"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(2,null)	 , null, ErrorMessage.INVALID_ARGUMENT);
+		testListPart(list,  tag+" add (index) 5"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(-1,null)	 , null, ErrorMessage.INVALID_ARGUMENT);
 
-		//TODO - make this a null and out of bounds insert
-		currentTest = tag+" add (index) 3";
-		returnedObject = list.add(-1, "minus one");
-		testListMatch(list,"[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 11);
-		testListIsEmpty(list, false, currentTest);
-
-		
+		//TODO - rewrite this in the new format for test script
 		currentTest = tag+" remove test 1";
 		returnedObject = list.remove(2);
 		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
@@ -138,24 +96,52 @@ public class TestCW3 {
 		currentTest = tag+" remove test 2";
 		returnedObject = list.remove(-1);
 		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
+		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, true, "Return Object for "+currentTest+" failed");
 		testListSize(list, currentTest, 10);
 		testListIsEmpty(list, false, currentTest);	
 		
 		currentTest = tag+" remove test 3";
 		returnedObject = list.remove(12);
 		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
-		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
+		testReturnObjectImpl(returnedObject, null, ErrorMessage.INDEX_OUT_OF_BOUNDS, true, "Return Object for "+currentTest+" failed");
 		testListSize(list, currentTest, 10);
 		testListIsEmpty(list, false, currentTest);	
 	
 		currentTest = tag+" get test 1";
 		returnedObject = list.get(3);
 		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
-		testReturnObjectImpl(returnedObject, 3, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
+		testReturnObjectImpl(returnedObject, 3, ErrorMessage.NO_ERROR, false, "Return Object for "+currentTest+" failed");
 		testListSize(list, currentTest, 10);
 		testListIsEmpty(list, false, currentTest);	
 
+		currentTest = tag+" get test 2";
+		returnedObject = list.get(-1);
+		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
+		testReturnObjectImpl(returnedObject, 3, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
+		testListSize(list, currentTest, 10);
+		testListIsEmpty(list, false, currentTest);
+		
+		currentTest = tag+" get test 3";
+		returnedObject = list.get(11);
+		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
+		testReturnObjectImpl(returnedObject, 3, ErrorMessage.INDEX_OUT_OF_BOUNDS, false, "Return Object for "+currentTest+" failed");
+		testListSize(list, currentTest, 10);
+		testListIsEmpty(list, false, currentTest);
+		
+		
+	}
+	
+	void testListPart(List list, String currentTest, String endListState, int endListSize, ReturnObject function, Object returnValue, ErrorMessage returnError){
+		
+		Boolean hasError = true;
+		
+		if (returnError.equals(ErrorMessage.NO_ERROR))
+			hasError = false;
+		
+		testListMatch(list,endListState, currentTest);
+		testReturnObjectImpl(function, returnValue, returnError, hasError, "Return Object for "+currentTest+" failed");
+		testListSize(list, currentTest, endListSize);
+		testListIsEmpty(list, false, currentTest);		
 		
 	}
 	
