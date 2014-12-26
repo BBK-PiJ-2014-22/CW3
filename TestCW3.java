@@ -84,15 +84,11 @@ public class TestCW3 {
 		testListPart(list,  tag+" add (index) 3"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(-1,"-one")	 , null, ErrorMessage.INVALID_ARGUMENT);
 		testListPart(list,  tag+" add (index) 4"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(2,null)	 , null, ErrorMessage.INVALID_ARGUMENT);
 		testListPart(list,  tag+" add (index) 5"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(-1,null)	 , null, ErrorMessage.INVALID_ARGUMENT);
+		testListPart(list,  tag+" remove test 1"	, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.remove(2)	 	 ,"two", ErrorMessage.NO_ERROR);
+
+		
 
 		//TODO - rewrite this in the new format for test script
-		currentTest = tag+" remove test 1";
-		returnedObject = list.remove(2);
-		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
-		testReturnObjectImpl(returnedObject, 2, ErrorMessage.NO_ERROR, false, "Return Object for "+currentTest+" failed");
-		testListSize(list, currentTest, 10);
-		testListIsEmpty(list, false, currentTest);	
-
 		currentTest = tag+" remove test 2";
 		returnedObject = list.remove(-1);
 		testListMatch(list,"[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]", currentTest);
