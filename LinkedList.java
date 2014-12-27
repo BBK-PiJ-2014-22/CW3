@@ -15,9 +15,9 @@ public class LinkedList implements List {
 	@Override
 	public boolean isEmpty() {
 		if (head == null) 
-			return false;
-		else
 			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class LinkedList implements List {
 		}else if (index == 0){
 			LinkedListNode removed = head;
 			head = head.next;
-			head.shuffleRight();
+			head.shuffleLeft();
 			return new ReturnObjectImpl(removed.value,ErrorMessage.NO_ERROR);
 		}
 		else{

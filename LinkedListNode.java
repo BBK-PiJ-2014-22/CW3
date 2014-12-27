@@ -39,10 +39,12 @@ public class LinkedListNode {
 	}
 
 	public ReturnObject remove(int index) {
-		if (this.next.position == index){
+		if (this.next == null){
+			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+		}else if(this.next.position == index){
 			LinkedListNode removed = this.next;
 			this.next = this.next.next;
-			this.next.shuffleRight();
+			this.next.shuffleLeft();
 			return new ReturnObjectImpl(removed.value, ErrorMessage.NO_ERROR);
 		}else{
 			return this.next.remove(index);
@@ -50,7 +52,9 @@ public class LinkedListNode {
 	}
 
 	public ReturnObject add(int index, Object item) {
-		if (this.next == null){
+		if (item == null){
+			return new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
+		}else if (this.next == null){
 			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}else if (this.next.position == index){
 			LinkedListNode newNode = new LinkedListNode(this.position+1, item);
@@ -64,7 +68,9 @@ public class LinkedListNode {
 	}
 
 	public ReturnObject add(Object item) {
-		if (this.next == null){
+		if (item == null){
+			return new ReturnObjectImpl(null, ErrorMessage.INVALID_ARGUMENT);
+		}else if (this.next == null){
 			this.next = new LinkedListNode(this.position+1, item);
 			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}else{
