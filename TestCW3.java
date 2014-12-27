@@ -174,5 +174,19 @@ public class TestCW3 {
 		}	
 	}
 	
+	//Stack test
 	
+	void testStack(String tag, Stack stack){
+		
+	}
+	
+	void testStackReturn(String tag, Stack stack, ReturnObject returnValue, ErrorMessage error, Object returnedValue, String match, Object top, int size){
+		
+	}
+	
+	void testStackPush(String tag, Stack stack, Object push, String match, int size){
+		
+	}
+	
+
 }
