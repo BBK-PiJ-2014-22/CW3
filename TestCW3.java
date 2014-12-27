@@ -146,6 +146,9 @@ public class TestCW3 {
 		testList(tag,list);	
 	}
 	
+	
+	//SampleableList tests
+
 	void testSampleableList(String tag, SampleableList list){
 		testList(tag, list);
 
@@ -162,7 +165,7 @@ public class TestCW3 {
 			System.out.println("Target: [0:1, 1:3, 2:5, 3:7, 4:9]");
 			System.out.println("Actual: "+newList);
 		}
-		
+			
 		newList.remove(1);
 		if (!list.toString().equals("[0:1, 1:3, 2:4, 3:5, 4:6, 5:7, 6:8, 7:9]")){
 			System.out.println(tag+ " sample test 3 failed: change to old list");
@@ -170,4 +173,6 @@ public class TestCW3 {
 			System.out.println("Actual: "+list);
 		}	
 	}
+	
+	
 }
