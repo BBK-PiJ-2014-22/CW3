@@ -9,6 +9,16 @@ public class ReturnObjectImpl implements ReturnObject {
 		this.returnValue = entry;
 		this.error = error;
 	}
+	
+	public ReturnObjectImpl(Object entry){
+		this.returnValue = entry;
+		this.error = ErrorMessage.NO_ERROR;
+	}
+	
+	public ReturnObjectImpl(ErrorMessage error){
+		this.returnValue = null;
+		this.error = error;
+	}
 		
 	@Override
 	public boolean hasError() {

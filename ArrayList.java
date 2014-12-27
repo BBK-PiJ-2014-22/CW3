@@ -1,8 +1,9 @@
+	//TODO - refactor so that ReturnObjects use the simplified constructors
 
 public class ArrayList implements List {
 	
-	private Object[] array;
-	private int size;
+	protected Object[] array;
+	protected int size;
 	
 	public ArrayList(){
 		array = new Object[1];
@@ -20,6 +21,8 @@ public class ArrayList implements List {
 		result += size-1+":"+array[size-1]+"]";
 		return result;
 	}
+	
+
 	
 	@Override
 	//If any element of the list is filled, the first element will be filled

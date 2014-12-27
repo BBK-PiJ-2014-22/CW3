@@ -20,6 +20,7 @@ public class TestCW3 {
 		//testList("Dummy List", new DummyList());
 		testList("Array List", new ArrayList());
 		testList("Linked List", new LinkedList());
+		testSampleableList("Sampleable List", new SampleableListImpl());
 		
 		System.out.println("Tests Completed");
 	
@@ -68,6 +69,8 @@ public class TestCW3 {
 	//Series of list tests and parts
 	public void testList(String tag, List list){
 		
+		long startTime = System.nanoTime();
+	
 		ReturnObject returnedObject = new ReturnObjectImpl (null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		String currentTest = tag+ " isEmpty intial test";
 	
@@ -91,11 +94,17 @@ public class TestCW3 {
 		testListPart(list,  tag+" get test 3"		, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.get(12)	 	 , null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		testListPart(list,  tag+" remove test 4"	, "[0:1, 1:2, 2:3, 3:4, 4:5, 5:6, 6:7, 7:8, 8:9]"			  , 9 , list.remove(0)	 	 ,0	   , ErrorMessage.NO_ERROR);
 
+		long endTime = System.nanoTime();
+		System.out.println("###"+tag+" took "+(endTime - startTime) + " ns###");
+		
+		
 	}
 	
+	
+	//List testing elements, made of full list test and several parts
 	void testListPart(List list, String currentTest, String endListState, int endListSize, ReturnObject function, Object returnValue, ErrorMessage returnError){
 		
-		System.out.println("***Starting "+currentTest+"***");
+		//System.out.println("***Starting "+currentTest+"***");
 		Boolean hasError = true;
 		
 		if (returnError.equals(ErrorMessage.NO_ERROR))
@@ -107,6 +116,7 @@ public class TestCW3 {
 		testListIsEmpty(list, false, currentTest);		
 	}
 	
+	//Component list tests
 	void testListSize(List list, String tag, int size){
 		if (list.size() != size){
 			System.out.println(tag+ "Size test failed");
@@ -130,6 +140,34 @@ public class TestCW3 {
 	
 	}
 	
-
+	//Functional List tests - to be written once clarification has been recieved
 	
+	void testFunctionalList(String tag, FunctionalList list){
+		testList(tag,list);	
+	}
+	
+	void testSampleableList(String tag, SampleableList list){
+		testList(tag, list);
+
+		SampleableList newList = list.sample();
+		if (!newList.toString().equals("[0:1, 1:3, 2:5, 3:7, 4:9]")){
+			System.out.println(tag+ " sample test 1 failed: Sample doesn't match");
+			System.out.println("Target: [0:1, 1:3, 2:5, 3:7, 4:9]");
+			System.out.println("Actual: "+newList);
+		}
+		
+		list.remove(1);
+		if (!newList.toString().equals("[0:1, 1:3, 2:5, 3:7, 4:9]")){
+			System.out.println(tag+ " sample test 2 failed: change to new list");
+			System.out.println("Target: [0:1, 1:3, 2:5, 3:7, 4:9]");
+			System.out.println("Actual: "+newList);
+		}
+		
+		newList.remove(1);
+		if (!list.toString().equals("[0:1, 1:3, 2:4, 3:5, 4:6, 5:7, 6:8, 7:9]")){
+			System.out.println(tag+ " sample test 3 failed: change to old list");
+			System.out.println("Target: [0:1, 1:3, 2:4, 3:5, 4:6, 5:7, 6:8, 7:9]");
+			System.out.println("Actual: "+list);
+		}	
+	}
 }
