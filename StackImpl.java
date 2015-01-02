@@ -7,8 +7,7 @@ public class StackImpl extends AbstractStack {
 	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return internalList.isEmpty();
 	}
 
 	@Override

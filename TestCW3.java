@@ -22,6 +22,12 @@ public class TestCW3 {
 		testList("Linked List", new LinkedList());
 		testSampleableList("Sampleable List", new SampleableListImpl());
 		
+		testStack("Array Stack", new StackImpl(new ArrayList()));
+		testStack("Linked Stack", new StackImpl(new ArrayList()));
+
+		
+		
+		
 		System.out.println("Tests Completed");
 	
 	}
@@ -93,7 +99,8 @@ public class TestCW3 {
 		testListPart(list,  tag+" get test 2"		, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.get(-1)	  	 , null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		testListPart(list,  tag+" get test 3"		, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.get(12)	 	 , null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		testListPart(list,  tag+" remove test 4"	, "[0:1, 1:2, 2:3, 3:4, 4:5, 5:6, 6:7, 7:8, 8:9]"			  , 9 , list.remove(0)	 	 ,0	   , ErrorMessage.NO_ERROR);
-
+		
+		//TODO add test to remove full list and test if empty
 		long endTime = System.nanoTime();
 		System.out.println("###"+tag+" took "+(endTime - startTime) + " ns###");
 		
@@ -104,7 +111,6 @@ public class TestCW3 {
 	//List testing elements, made of full list test and several parts
 	void testListPart(List list, String currentTest, String endListState, int endListSize, ReturnObject function, Object returnValue, ErrorMessage returnError){
 		
-		//System.out.println("***Starting "+currentTest+"***");
 		Boolean hasError = true;
 		
 		if (returnError.equals(ErrorMessage.NO_ERROR))
@@ -144,6 +150,7 @@ public class TestCW3 {
 	
 	void testFunctionalList(String tag, FunctionalList list){
 		testList(tag,list);	
+		//TODO - write functional list tests
 	}
 	
 	
@@ -177,16 +184,62 @@ public class TestCW3 {
 	//Stack test
 	
 	void testStack(String tag, Stack stack){
+		long startTime = System.nanoTime();
 		
+		testStackIsEmpty(tag, stack, true);
+		
+		testStackPush(tag + " push test 1", stack, 1, "[0:1]",1);
+		testStackPush(tag + " push test 2", stack, 2, "[0:1, 1:2]",2);
+		testStackPush(tag + " push test 3", stack, 3, "[0:1, 1:2, 2:3]",3);
+		testStackPush(tag + " push test 4", stack, 4, "[0:1, 1:2, 2:3, 3:4]",4);
+		testStackPush(tag + " push test 5", stack, 5, "[0:1, 1:2, 2:3, 3:4, 4:5]",5);
+		testStackPop( tag + " pop test 1" , stack, stack.pop(), ErrorMessage.NO_ERROR, 5, false, "[0:1, 1:2, 2:3, 3:4]",4, 4, false);
+		testStackPop( tag + " pop test 2" , stack, stack.pop(), ErrorMessage.NO_ERROR, 4, false, "[0:1, 1:2, 2:3]",3, 3, false);
+		testStackPop( tag + " pop test 3" , stack, stack.pop(), ErrorMessage.NO_ERROR, 3, false, "[0:1, 1:2",2, 2, false);
+		testStackPop( tag + " pop test 4" , stack, stack.pop(), ErrorMessage.NO_ERROR, 2, false, "[0:1",1, 1, false);
+		testStackPop( tag + " pop test 5" , stack, stack.pop(), ErrorMessage.NO_ERROR, 1, false, "[]",0, null, false);
+		testStackPop( tag + " pop test 6" , stack, stack.pop(), ErrorMessage.EMPTY_STRUCTURE, null, true, "[]",0, null, true);
+		
+		long endTime = System.nanoTime();
+		System.out.println("###"+tag+" took "+(endTime - startTime) + " ns###");
 	}
 	
-	void testStackReturn(String tag, Stack stack, ReturnObject returnValue, ErrorMessage error, Object returnedValue, String match, Object top, int size){
-		
+	void testStackIsEmpty(String tag, Stack stack, boolean value){
+		if (!stack.isEmpty() == value){
+			System.out.println(tag + " isEmpty test failed");
+			System.out.println(stack.isEmpty() + "!="+value);
+		}
+	}
+	
+	
+	void testStackPop(String tag, Stack stack, ReturnObject returnValue, ErrorMessage error, 
+			Object returnedValue, boolean hasError, String match, int size, Object top, boolean isEmpty){
+	
+		testStackMatch(tag,stack,match,size, top);
+		testReturnObjectImpl(returnValue, returnedValue, error, hasError, tag+"return object test failed");
+		testStackIsEmpty(tag, stack, isEmpty);
 	}
 	
 	void testStackPush(String tag, Stack stack, Object push, String match, int size){
 		
+		stack.push(push);
+		testStackMatch(tag, stack, match, size, push);
+		testStackIsEmpty(tag, stack, false);
 	}
-	
 
+	void testStackMatch(String tag, Stack stack, String match, int size, Object top){
+		if (!stack.toString().equals(match)){
+			System.out.println(tag +": match test failed");
+			System.out.println("Target: "+match);
+			System.out.println("Actual: "+stack);
+		}if (stack.size() != size){
+			System.out.println(tag +": size test failed");
+			System.out.println("Target: "+size);
+			System.out.println("Actual: "+stack.size());
+		}if (!stack.top().equals(top)){
+			System.out.println(tag +": top test failed");
+			System.out.println("Target: "+top);
+			System.out.println("Actual: "+stack.top());
+		}
+	}
 }
