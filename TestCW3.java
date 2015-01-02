@@ -100,6 +100,13 @@ public class TestCW3 {
 		testListPart(list,  tag+" get test 3"		, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.get(12)	 	 , null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		testListPart(list,  tag+" remove test 4"	, "[0:1, 1:2, 2:3, 3:4, 4:5, 5:6, 6:7, 7:8, 8:9]"			  , 9 , list.remove(0)	 	 ,0	   , ErrorMessage.NO_ERROR);
 		
+		for (int i = 0; i <9 ; i++){
+			list.remove(0);
+		}
+		System.out.println(list);
+		testListIsEmpty(list, true, tag+" isEmpty test final");
+		
+		
 		//TODO add test to remove full list and test if empty
 		long endTime = System.nanoTime();
 		System.out.println("###"+tag+" took "+(endTime - startTime) + " ns###");
@@ -186,6 +193,7 @@ public class TestCW3 {
 	void testStack(String tag, Stack stack){
 		long startTime = System.nanoTime();
 		
+		//TODO - add in a test to check the top of null stacks
 		testStackIsEmpty(tag, stack, true);
 		
 		testStackPush(tag + " push test 1", stack, 1, "[0:1]",1);
@@ -195,8 +203,8 @@ public class TestCW3 {
 		testStackPush(tag + " push test 5", stack, 5, "[0:1, 1:2, 2:3, 3:4, 4:5]",5);
 		testStackPop( tag + " pop test 1" , stack, stack.pop(), ErrorMessage.NO_ERROR, 5, false, "[0:1, 1:2, 2:3, 3:4]",4, 4, false);
 		testStackPop( tag + " pop test 2" , stack, stack.pop(), ErrorMessage.NO_ERROR, 4, false, "[0:1, 1:2, 2:3]",3, 3, false);
-		testStackPop( tag + " pop test 3" , stack, stack.pop(), ErrorMessage.NO_ERROR, 3, false, "[0:1, 1:2",2, 2, false);
-		testStackPop( tag + " pop test 4" , stack, stack.pop(), ErrorMessage.NO_ERROR, 2, false, "[0:1",1, 1, false);
+		testStackPop( tag + " pop test 3" , stack, stack.pop(), ErrorMessage.NO_ERROR, 3, false, "[0:1, 1:2]",2, 2, false);
+		testStackPop( tag + " pop test 4" , stack, stack.pop(), ErrorMessage.NO_ERROR, 2, false, "[0:1]",1, 1, false);
 		testStackPop( tag + " pop test 5" , stack, stack.pop(), ErrorMessage.NO_ERROR, 1, false, "[]",0, null, false);
 		testStackPop( tag + " pop test 6" , stack, stack.pop(), ErrorMessage.EMPTY_STRUCTURE, null, true, "[]",0, null, true);
 		
@@ -236,7 +244,7 @@ public class TestCW3 {
 			System.out.println(tag +": size test failed");
 			System.out.println("Target: "+size);
 			System.out.println("Actual: "+stack.size());
-		}if (!stack.top().equals(top)){
+		}if (!stack.top().getReturnValue().equals(top)){
 			System.out.println(tag +": top test failed");
 			System.out.println("Target: "+top);
 			System.out.println("Actual: "+stack.top());

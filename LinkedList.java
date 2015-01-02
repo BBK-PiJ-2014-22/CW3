@@ -44,8 +44,11 @@ public class LinkedList implements List {
 			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}else if (index == 0){
 			LinkedListNode removed = head;
+		
 			head = head.next;
-			head.shuffleLeft();
+			if (head != null){
+				head.shuffleLeft();
+			}
 			return new ReturnObjectImpl(removed.value,ErrorMessage.NO_ERROR);
 		}
 		else{

@@ -13,12 +13,18 @@ public class ArrayList implements List {
 	@Override
 	public String toString(){
 		
-		String result = "[";
 	
-		for (int i = 0; i < this.size-1 ; i++){
-			result += i +":"+array[i]+", ";
+		
+		String result = "[";
+		
+		if (size > 0){
+
+			for (int i = 0; i < this.size-1 ; i++){
+				result += i +":"+array[i]+", ";
+			}
+			result += size-1+":"+array[size-1];
 		}
-		result += size-1+":"+array[size-1]+"]";
+		result += "]";
 		return result;
 	}
 	
