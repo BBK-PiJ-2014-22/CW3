@@ -23,12 +23,12 @@ public class ArrayList implements List {
 				result += i +":"+array[i]+", ";
 			}
 			result += size-1+":"+array[size-1];
+		}else{
+			result += array[0];
 		}
 		result += "]";
 		return result;
 	}
-	
-
 	
 	@Override
 	//If any element of the list is filled, the first element will be filled
@@ -66,6 +66,9 @@ public class ArrayList implements List {
 			}while (this.array[shuffle] != null);
 			
 			size --;
+			if (size == 0){
+				array[0] = null;
+			}
 			return new ReturnObjectImpl(toReturn, ErrorMessage.NO_ERROR);		
 		}
 	}
@@ -101,7 +104,6 @@ public class ArrayList implements List {
 			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
 		}
 	}
-
 	
 	/**Checks the size of the current array before trying to add anything
 	 * If the size is equal to the max size of the current array, the array 
