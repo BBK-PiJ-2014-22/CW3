@@ -18,20 +18,15 @@ public class TestCW3 {
 		testReturnObjectImpl(new ReturnObjectImpl("str"	, ErrorMessage.INVALID_ARGUMENT)	,null	, ErrorMessage.INVALID_ARGUMENT	,true,	"Return Object Test 8 Failed");
 
 		//testList("Dummy List", new DummyList());
-		testList("Array List", new ArrayList());
-		testList("Linked List", new LinkedList());
-		testSampleableList("Sampleable List", new SampleableListImpl());
-		
-		testStack("Array Stack", new StackImpl(new ArrayList()));
+		testList(          "Array  List", new ArrayList());
+		testList(          "Linked List", new LinkedList());		
+		testSampleableList("Sample List", new SampleableListImpl());
+		testStack("Array  Stack", new StackImpl(new ArrayList()));
 		testStack("Linked Stack", new StackImpl(new ArrayList()));
-
-		
-		
-		
+	
 		System.out.println("Tests Completed");
 	
 	}
-
 	
 	public void testReturnObjectImpl(ReturnObject testObject, Object object, ErrorMessage error, boolean result, String message){
 		
@@ -114,8 +109,7 @@ public class TestCW3 {
 		
 		
 	}
-	
-	
+		
 	//List testing elements, made of full list test and several parts
 	void testListPart(List list, String currentTest, String endListState, int endListSize, ReturnObject function, Object returnValue, ErrorMessage returnError){
 		
@@ -155,15 +149,12 @@ public class TestCW3 {
 	}
 	
 	//Functional List tests - to be written once clarification has been recieved
-	
 	void testFunctionalList(String tag, FunctionalList list){
 		testList(tag,list);	
 		//TODO - write functional list tests
 	}
 	
-	
 	//SampleableList tests
-
 	void testSampleableList(String tag, SampleableList list){
 		testList(tag, list);
 
@@ -194,7 +185,6 @@ public class TestCW3 {
 	}
 	
 	//Stack test
-	
 	void testStack(String tag, Stack stack){
 		long startTime = System.nanoTime();
 		
@@ -241,6 +231,9 @@ public class TestCW3 {
 	}
 
 	void testStackMatch(String tag, Stack stack, String match, int size, Object top){
+
+
+		
 		if (!stack.toString().equals(match)){
 			System.out.println(tag +": match test failed");
 			System.out.println("Target: "+match);
@@ -267,4 +260,9 @@ public class TestCW3 {
 		}
 
 	}
+
+	void testImprovedStack(String tag, ImprovedStack stack){
+		testStack(tag, stack);
+		
+	}	
 }

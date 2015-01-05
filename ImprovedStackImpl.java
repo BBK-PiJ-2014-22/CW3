@@ -1,46 +1,85 @@
 
 public class ImprovedStackImpl implements ImprovedStack {
 
+	Stack mainStack;
+	
+	public ImprovedStackImpl(List list){
+		mainStack = new StackImpl(list);
+	}
+	
+	public ImprovedStackImpl(){
+		mainStack = new StackImpl(new ArrayList());
+	}
+	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return mainStack.isEmpty();
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return mainStack.size();
 	}
 
 	@Override
 	public void push(Object item) {
-		// TODO Auto-generated method stub
+		mainStack.push(item);
 
 	}
 
 	@Override
 	public ReturnObject top() {
-		// TODO Auto-generated method stub
-		return null;
+		return mainStack.top();
 	}
 
 	@Override
 	public ReturnObject pop() {
-		// TODO Auto-generated method stub
-		return null;
+		return mainStack.pop();
 	}
 
 	@Override
 	public ImprovedStack reverse() {
-		// TODO Auto-generated method stub
-		return null;
+		List reverseList = this.getList();
+		this.addList(reverseList);
+		return new ImprovedStackImpl(reverseList);
 	}
+		
 
 	@Override
 	public void remove(Object object) {
-		// TODO Auto-generated method stub
-
+		List reverseList = this.getList();
+		
+	}
+	
+	/**Get's a list equivalent to the reverse of the stack by popping all elements of the stack.
+	 * Will leave the Stack empty.
+	 * 
+	 * Used within the Reverse and Remove methods.
+	 * 
+	 * @return a list of elements in reverse order of the Stack
+	 */
+	private List getList(){
+		
+		List reverseList = new ArrayList();		
+		while (!mainStack.isEmpty()){
+			reverseList.add(mainStack.pop().getReturnValue());
+		}
+		return reverseList;
+	}
+	
+	
+	/**Pushes a list into the Improved Stack. The list will be pushed from end to start, so that 
+	 * list element[0] will be element at the top of the stack.
+	 * 
+	 * Used in the Reverse and Remove methods
+	 * 
+	 * @param list that should be pushed to the stack
+	 */
+	private void addList(List list){
+		
+		for (int i = list.size()-1; i <= 0; i--){
+		mainStack.push(list.get(i).getReturnValue());
 	}
 
+	}
 }
