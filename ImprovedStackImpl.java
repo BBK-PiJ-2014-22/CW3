@@ -12,6 +12,11 @@ public class ImprovedStackImpl implements ImprovedStack {
 	}
 	
 	@Override
+	public String toString(){
+		return mainStack.toString();
+	}
+	
+	@Override
 	public boolean isEmpty() {
 		return mainStack.isEmpty();
 	}
@@ -48,7 +53,19 @@ public class ImprovedStackImpl implements ImprovedStack {
 	@Override
 	public void remove(Object object) {
 		List reverseList = this.getList();
+		List toRemove = new LinkedList();
 		
+		for (int i = 0; i < reverseList.size(); i++){
+			if (reverseList.get(i).getReturnValue().equals(object)){
+				toRemove.add(i);
+			}
+		}
+		
+		for (int j = toRemove.size()-1; j >= 0 ; j--){
+			reverseList.remove(j);
+		}
+		
+		this.addList(reverseList);
 	}
 	
 	/**Get's a list equivalent to the reverse of the stack by popping all elements of the stack.
