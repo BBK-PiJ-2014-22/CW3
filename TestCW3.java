@@ -265,10 +265,26 @@ public class TestCW3 {
 	
 
 	void testImprovedStack(String tag, ImprovedStack stack){
-		testStack(tag, stack);	
-		 
-		System.out.println(stack);
 		
+		testStack(tag, stack);	
+		
+		stack.push(0);
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		stack.push(4);
+		
+		testImprovedStackReverse(tag+" Reverse test 1", stack, "[0:0, 1:1, 2:2, 3:3, 4:4]", "[4:4, 3:3, 2:2, 1:1, 0:0]", 5, 4, 0);
+		testImprovedStackRemove(tag+" Remove test 1", stack, "[0:0, 1:1, 2:2,3:3, 4:4]", 5, 4, 5 );
+		testImprovedStackRemove(tag+" Remove test 2", stack, "[0:0, 1:1, 2:2, 3:3]", 4, 3, 4);
+		testImprovedStackRemove(tag+" Remove test 3", stack, "[0:0, 1:1, 2:3]", 3, 3, 2);
+		
+		stack.push(2);
+		stack.push(2);
+		
+		testImprovedStackRemove(tag+" Remove test 4", stack, "[0:0, 1:1, 2:3]", 3, 3, 2);
+		testImprovedStackRemove(tag+" Remove test 5", stack, "[0:1, 1:3]", 2, 3, 0);
+		testImprovedStackReverse(tag+" Reverse test 2", stack, "[0:3, 1:1]", "[0:3, 1:1]", 2, 1, 3);
 		
 	}	
 
