@@ -23,6 +23,9 @@ public class TestCW3 {
 		testSampleableList("Sample List", new SampleableListImpl());
 		testStack("Array  Stack", new StackImpl(new ArrayList()));
 		testStack("Linked Stack", new StackImpl(new ArrayList()));
+		
+		testImprovedStack("Improved Stack", new ImprovedStackImpl(new ArrayList()));
+		testImprovedStack("Improved Stack", new ImprovedStackImpl(new LinkedList()));
 	
 		System.out.println("Tests Completed");
 	
@@ -231,8 +234,6 @@ public class TestCW3 {
 	}
 
 	void testStackMatch(String tag, Stack stack, String match, int size, Object top){
-
-
 		
 		if (!stack.toString().equals(match)){
 			System.out.println(tag +": match test failed");
@@ -261,8 +262,30 @@ public class TestCW3 {
 
 	}
 
+	
+
 	void testImprovedStack(String tag, ImprovedStack stack){
-		testStack(tag, stack);
+		testStack(tag, stack);	
+		 
+		System.out.println(stack);
+		
 		
 	}	
+
+	void testImprovedStackRemove(String tag, ImprovedStack stack, String match, int size, Object top, Object removeObject){
+		
+		stack.remove(removeObject);
+		testStackMatch(tag, stack, match, size, top);
+		
+	}
+	
+	void testImprovedStackReverse(String tag, ImprovedStack stack, String matchOld, String matchNew, int size, Object topOld, Object topNew){
+		
+		ImprovedStack reverseStack = stack.reverse();
+		testStackMatch(tag+" Original ", stack, matchOld, size, topOld);
+		testStackMatch(tag+" Reverse ", reverseStack, matchNew, size, topNew);
+		
+	}
+	
 }
+

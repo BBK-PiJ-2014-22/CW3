@@ -45,7 +45,8 @@ public class LinkedListNode {
 		}else if(this.next.position == index){
 			LinkedListNode removed = this.next;
 			this.next = this.next.next;
-			this.next.shuffleLeft();
+			if (this.next != null)
+				this.next.shuffleLeft();
 			return new ReturnObjectImpl(removed.value, ErrorMessage.NO_ERROR);
 		}else{
 			return this.next.remove(index);

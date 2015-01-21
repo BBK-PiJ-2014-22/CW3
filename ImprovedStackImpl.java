@@ -55,16 +55,19 @@ public class ImprovedStackImpl implements ImprovedStack {
 		List reverseList = this.getList();
 		List toRemove = new LinkedList();
 		
+		//builds a list of the indexes that need to be removed
 		for (int i = 0; i < reverseList.size(); i++){
 			if (reverseList.get(i).getReturnValue().equals(object)){
 				toRemove.add(i);
 			}
 		}
 		
+		//removes the elements last to first (so that the indexes remain)
 		for (int j = toRemove.size()-1; j >= 0 ; j--){
 			reverseList.remove(j);
 		}
 		
+		//Rebuilds the stack
 		this.addList(reverseList);
 	}
 	
@@ -96,7 +99,7 @@ public class ImprovedStackImpl implements ImprovedStack {
 		
 		for (int i = list.size()-1; i <= 0; i--){
 		mainStack.push(list.get(i).getReturnValue());
-	}
+		}
 
 	}
 }
