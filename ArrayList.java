@@ -10,6 +10,14 @@ public class ArrayList implements List {
 		size = 0;
 	}
 	
+	public ArrayList(List list){
+		this.array = new Object[list.size()+1];
+		this.size = 0;
+		for (int i = 0; i <= list.size(); i++){
+			this.add(list.get(i).getReturnValue());
+		}
+	}
+	
 	@Override
 	public String toString(){
 		

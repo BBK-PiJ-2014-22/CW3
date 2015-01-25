@@ -84,6 +84,9 @@ public class TestCW3 {
 			returnedObject = list.add(i);
 		
 		testListPart(list,  tag+" add (no index) 1"	, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.add(9)			 , null, ErrorMessage.NO_ERROR);
+		
+		testListCopy(list, tag+"copy test");
+
 		testListPart(list,  tag+" add (no index) 2"	, "[0:0, 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7, 8:8, 9:9]"		  , 10, list.add(null)		 , null, ErrorMessage.INVALID_ARGUMENT);
 		testListPart(list,  tag+" add (index) 1"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(2,"two")	 , null, ErrorMessage.NO_ERROR);
 		testListPart(list,  tag+" add (index) 2"	, "[0:0, 1:1, 2:two, 3:2, 4:3, 5:4, 6:5, 7:6, 8:7, 9:8, 10:9]", 11, list.add(12,"twelve"), null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
@@ -148,8 +151,24 @@ public class TestCW3 {
 			System.out.println(test + " isEmpty test failed");
 			System.out.println(list.isEmpty() + "!="+value);
 		}
-	
 	}
+	
+	void testListCopy(List list, String tag){
+		
+		List arrayCopy = new ArrayList(list);
+		List linkedCopy = new LinkedList(list);
+		
+		if (!arrayCopy.toString().equals(list.toString())){
+			System.out.println(tag + "arrayCopy failed");
+			System.out.println("Expected: "+list +"Actual: "+arrayCopy);
+		}
+		
+		if (!linkedCopy.toString().equals(list.toString())){
+			System.out.println(tag + "linkedCopy failed");
+			System.out.println("Expected: "+list +"Actual: "+linkedCopy);
+		}
+	}
+	
 	
 	//Functional List tests - to be written once clarification has been recieved
 	void testFunctionalList(String tag, FunctionalList list){

@@ -8,6 +8,15 @@ public class LinkedList implements List {
 		head = null;
 	}
 	
+	public LinkedList(List list){
+		head = null;
+		if (list.size() != 0){
+			for (int i = 0; i <= list.size(); i++){
+				this.add(list.get(i).getReturnValue());
+			}
+		}
+	}
+	
 	@Override
 	public String toString(){
 		return "["+head+"]";
