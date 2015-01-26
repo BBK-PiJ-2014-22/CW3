@@ -24,8 +24,8 @@ public class TestCW3 {
 		testStack("Array  Stack", new StackImpl(new ArrayList()));
 		testStack("Linked Stack", new StackImpl(new ArrayList()));
 		
-		testImprovedStack("Improved Stack", new ImprovedStackImpl(new ArrayList()));
-		testImprovedStack("Improved Stack", new ImprovedStackImpl(new LinkedList()));
+		testImprovedStack("Improved Stack Array", new ImprovedStackImpl(new ArrayList()));
+		testImprovedStack("Improved Stack Linked", new ImprovedStackImpl(new LinkedList()));
 	
 		System.out.println("Tests Completed");
 	
@@ -266,7 +266,7 @@ public class TestCW3 {
 		}
 		
 		boolean topTestFailed = false;
-		
+
 		if (top == null){
 			if (top != stack.top().getReturnValue()){
 				topTestFailed = true;
@@ -277,7 +277,7 @@ public class TestCW3 {
 		if (topTestFailed){
 			System.out.println(tag +": top test failed");
 			System.out.println("Target: "+top);
-			System.out.println("Actual: "+stack.top());			
+			System.out.println("Actual: "+stack.top().getReturnValue());			
 		}
 
 	}
@@ -302,8 +302,8 @@ public class TestCW3 {
 		stack.push(3);
 		stack.push(4);
 		
-		testImprovedStackReverse(tag+" Reverse test 1", stack, "[0:0, 1:1, 2:2, 3:3, 4:4]", "[4:4, 3:3, 2:2, 1:1, 0:0]", 5, 4, 0);
-		testImprovedStackRemove(tag+" Remove test 1", stack, "[0:0, 1:1, 2:2,3:3, 4:4]", 5, 4, 5 );
+		testImprovedStackReverse(tag+" Reverse test 1", stack, "[0:0, 1:1, 2:2, 3:3, 4:4]", "[0:4, 1:3, 2:2, 3:1, 4:0]", 5, 4, 0);
+		testImprovedStackRemove(tag+" Remove test 1", stack, "[0:0, 1:1, 2:2, 3:3, 4:4]", 5, 4, 5 );
 		testImprovedStackRemove(tag+" Remove test 2", stack, "[0:0, 1:1, 2:2, 3:3]", 4, 3, 4);
 		testImprovedStackRemove(tag+" Remove test 3", stack, "[0:0, 1:1, 2:3]", 3, 3, 2);
 		
@@ -312,7 +312,7 @@ public class TestCW3 {
 		
 		testImprovedStackRemove(tag+" Remove test 4", stack, "[0:0, 1:1, 2:3]", 3, 3, 2);
 		testImprovedStackRemove(tag+" Remove test 5", stack, "[0:1, 1:3]", 2, 3, 0);
-		testImprovedStackReverse(tag+" Reverse test 2", stack, "[0:3, 1:1]", "[0:3, 1:1]", 2, 1, 3);
+		testImprovedStackReverse(tag+" Reverse test 2", stack, "[0:1, 1:3]", "[0:3, 1:1]", 2, 3, 1);
 		
 	}	
 

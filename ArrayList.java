@@ -68,10 +68,10 @@ public class ArrayList implements List {
 		}else{
 			Object toReturn = this.array[index];
 			int shuffle = index+1;
-			do{
+			while(this.array[shuffle] != null){
 				this.array[shuffle-1] = this.array[shuffle];
 				shuffle++;
-			}while (this.array[shuffle] != null);
+			}
 			
 			size --;
 			if (size == 0){

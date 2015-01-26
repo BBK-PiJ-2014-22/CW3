@@ -1,7 +1,7 @@
 
 public class ImprovedStackImpl implements ImprovedStack {
 
-	Stack mainStack;
+	AbstractStack mainStack;
 	
 	public ImprovedStackImpl(List list){
 		mainStack = new StackImpl(list);
@@ -52,7 +52,7 @@ public class ImprovedStackImpl implements ImprovedStack {
 		ImprovedStack reverse = new ImprovedStackImpl(new ArrayList());
 		
 		while(!tempStack.isEmpty()){
-			reverse.push(tempStack.pop());
+			reverse.push(tempStack.pop().getReturnValue());
 		}
 		return reverse;
 	}
@@ -60,7 +60,17 @@ public class ImprovedStackImpl implements ImprovedStack {
 
 	@Override
 	public void remove(Object object) {
-		List newList = this.getList();
+		
+		List list = this.mainStack.internalList;
+		
+		for (int i = list.size()-1 ; i >= 0 ; i--){
+			if (list.get(i).getReturnValue().equals(object)){
+				list.remove(i);
+			}
+			
+		}
+		
+		/*List newList = this.getList();
 		List toRemove = new LinkedList();
 		
 		//builds a list of the indexes that need to be removed
@@ -76,7 +86,7 @@ public class ImprovedStackImpl implements ImprovedStack {
 		}
 		
 		//Rebuilds the stack
-		this.mainStack = new StackImpl(newList);
+		this.mainStack = new StackImpl(newList);*/
 	}
 	
 	/**Get's a list equivalent to the reverse of the stack by popping all elements of the stack.
