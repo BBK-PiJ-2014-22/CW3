@@ -207,7 +207,7 @@ public class TestCW3 {
 	}
 	
 	//Stack test
-	void testStack(String tag, Stack stack){
+	void testStack(String tag, AbstractStack stack){
 		long startTime = System.nanoTime();
 		
 		//TODO - add in a test to check the top of null stacks
@@ -218,6 +218,7 @@ public class TestCW3 {
 		testStackPush(tag + " push test 3", stack, 3, "[0:1, 1:2, 2:3]",3);
 		testStackPush(tag + " push test 4", stack, 4, "[0:1, 1:2, 2:3, 3:4]",4);
 		testStackPush(tag + " push test 5", stack, 5, "[0:1, 1:2, 2:3, 3:4, 4:5]",5);
+		testStackCopy(tag + " copy test 1", stack);
 		testStackPop( tag + " pop test 1" , stack, stack.pop(), ErrorMessage.NO_ERROR, 5, false, "[0:1, 1:2, 2:3, 3:4]",4, 4, false);
 		testStackPop( tag + " pop test 2" , stack, stack.pop(), ErrorMessage.NO_ERROR, 4, false, "[0:1, 1:2, 2:3]",3, 3, false);
 		testStackPop( tag + " pop test 3" , stack, stack.pop(), ErrorMessage.NO_ERROR, 3, false, "[0:1, 1:2]",2, 2, false);
@@ -280,13 +281,21 @@ public class TestCW3 {
 		}
 
 	}
+	
+	void testStackCopy(String tag, AbstractStack stack){
+		Stack copy = new StackImpl(stack);
+		
+		if (!stack.toString().equals(copy.toString())){
+			System.out.println(tag +": Stack Copy test failed");
+			System.out.println("Target: "+stack);
+			System.out.println("Actual: "+copy);
+		}
+	}
 
 	
 
 	void testImprovedStack(String tag, ImprovedStack stack){
-		
-		testStack(tag, stack);	
-		
+			
 		stack.push(0);
 		stack.push(1);
 		stack.push(2);

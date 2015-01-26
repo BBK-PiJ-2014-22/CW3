@@ -5,6 +5,10 @@ public class StackImpl extends AbstractStack {
 		super(list);
 	}
 	
+	public StackImpl(AbstractStack stack){
+		super(new ArrayList(stack.internalList));
+	}
+	
 	@Override
 	public String toString(){
 		return internalList.toString();

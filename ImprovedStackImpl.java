@@ -7,6 +7,10 @@ public class ImprovedStackImpl implements ImprovedStack {
 		mainStack = new StackImpl(list);
 	}
 	
+	public ImprovedStackImpl(ImprovedStackImpl stack){
+		this.mainStack = new StackImpl((AbstractStack)stack.mainStack);
+	}
+	
 	public ImprovedStackImpl(){
 		mainStack = new StackImpl(new ArrayList());
 	}
@@ -44,31 +48,35 @@ public class ImprovedStackImpl implements ImprovedStack {
 
 	@Override
 	public ImprovedStack reverse() {
-		List reverseList = this.getList();
-		this.addList(reverseList);
-		return new ImprovedStackImpl(reverseList);
+		ImprovedStackImpl tempStack = new ImprovedStackImpl(this);
+		ImprovedStack reverse = new ImprovedStackImpl(new ArrayList());
+		
+		while(!tempStack.isEmpty()){
+			reverse.push(tempStack.pop());
+		}
+		return reverse;
 	}
 		
 
 	@Override
 	public void remove(Object object) {
-		List reverseList = this.getList();
+		List newList = this.getList();
 		List toRemove = new LinkedList();
 		
 		//builds a list of the indexes that need to be removed
-		for (int i = 0; i < reverseList.size(); i++){
-			if (reverseList.get(i).getReturnValue().equals(object)){
+		for (int i = 0; i < newList.size(); i++){
+			if (newList.get(i).getReturnValue().equals(object)){
 				toRemove.add(i);
 			}
 		}
 		
 		//removes the elements last to first (so that the indexes remain)
 		for (int j = toRemove.size()-1; j >= 0 ; j--){
-			reverseList.remove(j);
+			newList.remove(j);
 		}
 		
 		//Rebuilds the stack
-		this.addList(reverseList);
+		this.mainStack = new StackImpl(newList);
 	}
 	
 	/**Get's a list equivalent to the reverse of the stack by popping all elements of the stack.
@@ -80,9 +88,11 @@ public class ImprovedStackImpl implements ImprovedStack {
 	 */
 	private List getList(){
 		
+		ImprovedStackImpl copy = new ImprovedStackImpl(this);
+		
 		List reverseList = new ArrayList();		
-		while (!mainStack.isEmpty()){
-			reverseList.add(mainStack.pop().getReturnValue());
+		while (!copy.mainStack.isEmpty()){
+			reverseList.add(copy.mainStack.pop().getReturnValue());
 		}
 		return reverseList;
 	}
