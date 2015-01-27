@@ -24,9 +24,12 @@ public class LinkedList implements List {
 		return "["+head+"]";
 	}
 	
-	
-	public boolean equals(List list){
-		boolean match = true;
+	@Override
+	public boolean equals(Object object){
+		if (!(object instanceof List)) return false;
+		
+		List list = (List) object;
+		
 		if (this.size() != list.size())
 			return false;
 		else{

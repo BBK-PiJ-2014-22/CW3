@@ -15,6 +15,8 @@ import DataStructures.FunctionalArrayList;
 import DataStructures.FunctionalLinkedList;
 import DataStructures.FunctionalList;
 import DataStructures.ReturnObject;
+import DataStructures.ReturnObjectImpl;
+
 
 @RunWith(Parameterized.class)
 public class FunctionalListTest {
@@ -39,30 +41,36 @@ public class FunctionalListTest {
 	}
 
 	@Test
-	public void headBasicFunctionReturn() {
+	public void headBasicFunction() {
 		list.add(1);
 		list.add(2);
 		list.add(3);
 		ReturnObject result = list.head();
-		assertEquals(1, result.getReturnValue());		
+		assertEquals(new ReturnObjectImpl(1), result);		
 	}
 
-	@Test
-	public void headBasicFunctionError() {
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		ReturnObject result = list.head();
-		assertEquals(ErrorMessage.NO_ERROR, result.getError());		
-	}
 
 	@Test
 	public void headNullFunction(){
 		ReturnObject result = list.head();
-		assertEquals(ErrorMessage.EMPTY_STRUCTURE, result.getError());
+		assertEquals(new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE), result);
+	}	
+	
+	/*
+	@Test
+	public void headIdentical(){
+		//Tests if object is identical
 	}
+	*/
 	
-	
-	
-	
+	/*@Test
+	public void restStandard(){
+		list.add("one");
+		list.add("two");
+		list.add("three");
+		
+		FunctionaList rest = list.rest();
+		
+		
+	}*/
 }

@@ -21,9 +21,25 @@ public class ArrayList implements List {
 	}
 	
 	@Override
-	public String toString(){
+	public boolean equals(Object object){
+		if (!(object instanceof List)) return false;
 		
+		List list = (List) object;
+		
+		if (this.size() != list.size())
+			return false;
+		else{
+			for (int i = 0; i < this.size() ; i++){
+				if (!this.get(i).equals(list.get(i))){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 	
+	@Override
+	public String toString(){
 		
 		String result = "[";
 		
