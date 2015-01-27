@@ -1,5 +1,7 @@
+package DataStructures;
 
-public class DummyList implements List {
+
+public class FunctionalLinkedList implements FunctionalList {
 
 	@Override
 	public boolean isEmpty() {
@@ -33,6 +35,18 @@ public class DummyList implements List {
 
 	@Override
 	public ReturnObject add(Object item) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ReturnObject head() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public FunctionalList rest() {
 		// TODO Auto-generated method stub
 		return null;
 	}
