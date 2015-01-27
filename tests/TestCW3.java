@@ -277,7 +277,8 @@ public class TestCW3 {
 	
 	//Stack Compononents
 	
-	/**Tests if a stack's isEmpty() function is working. Includined in Push/Pop tests
+	/**Tests if a stack's isEmpty() function is working. Included in Push/Pop tests.
+	 * Displays error messages on fail.
 	 * 
 	 * @param tag Identifier for the specific test to be displayed on fail 
 	 * @param stack Stack object to be tested
@@ -291,14 +292,35 @@ public class TestCW3 {
 		}
 	}
 
-	void testStackPop(String tag, Stack stack, ReturnObject returnValue, ErrorMessage error, 
+	/**Pops an element from the stack and performs a number of tests. Displays error messages on fail
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be tested
+	 * @param popedObject Return object from Popping from stack
+	 * @param error Expected error message
+	 * @param Expected Value to be returned
+	 * @param hasError Whether result is expected to be an error or not 
+	 * @param match Expected Resulting toString() after operation
+	 * @param size Expected result size after operation
+	 * @param top Expected resulting top after operation
+	 * @param isEmpty Expected whether stack isEmpty or not
+	 */
+	void testStackPop(String tag, Stack stack, ReturnObject popedObject, ErrorMessage error, 
 			Object returnedValue, boolean hasError, String match, int size, Object top, boolean isEmpty){
 	
 		testStackMatch(tag,stack,match,size, top);
-		testReturnObject(returnValue, returnedValue, error, hasError, tag+"return object test failed");
+		testReturnObject(popedObject, returnedValue, error, hasError, tag+"return object test failed");
 		testStackIsEmpty(tag, stack, isEmpty);
 	}
 	
+	/**Pushes an element to the stack and performs a number of tests. Displays error messages on fail.
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be testedk
+	 * @param push Object to push to the stack
+	 * @param match Expected Resulting toString() after operation
+	 * @param size Expected result size after operation
+	 */
 	void testStackPush(String tag, Stack stack, Object push, String match, int size){
 		
 		stack.push(push);
@@ -306,16 +328,25 @@ public class TestCW3 {
 		testStackIsEmpty(tag, stack, false);
 	}
 
+	/**Tests whether the stack matches to the expected toString
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be tested
+	 * @param match Expected Resulting toString() after operation
+	 * @param size Expected result size after operation
+	 * @param top Expected resulting top after operation
+	 */
+	
 	void testStackMatch(String tag, Stack stack, String match, int size, Object top){
 		
 		if (!stack.toString().equals(match)){
 			System.out.println(tag +": match test failed");
-			System.out.println("Target: "+match);
-			System.out.println("Actual: "+stack);
+			System.out.println("Expected:"+match);
+			System.out.println("Actual:  "+stack);
 		}if (stack.size() != size){
 			System.out.println(tag +": size test failed");
-			System.out.println("Target: "+size);
-			System.out.println("Actual: "+stack.size());
+			System.out.println("Expected:"+size);
+			System.out.println("Actual:  "+stack.size());
 		}
 		
 		boolean topTestFailed = false;
@@ -329,24 +360,33 @@ public class TestCW3 {
 		}
 		if (topTestFailed){
 			System.out.println(tag +": top test failed");
-			System.out.println("Target: "+top);
-			System.out.println("Actual: "+stack.top().getReturnValue());			
+			System.out.println("Expected:"+top);
+			System.out.println("Actual:  "+stack.top().getReturnValue());			
 		}
-
 	}
 	
+	/**Tests if an AbstractStack is copied succesfully with a copy constructor
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be tested
+	 */
 	void testStackCopy(String tag, AbstractStack stack){
 		Stack copy = new StackImpl(stack);
 		
 		if (!stack.toString().equals(copy.toString())){
 			System.out.println(tag +": Stack Copy test failed");
-			System.out.println("Target: "+stack);
-			System.out.println("Actual: "+copy);
+			System.out.println("Expected: "+stack);
+			System.out.println("Actual:   "+copy);
 		}
 	}
 
 	
-
+	/**Series of tests to test enhanced functionality of any ImprovedStack. Displays time taken at end of test. 
+	 * Does not test basic Stack functionality, which should be run through the StackTest separately. 
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be tested
+	 */
 	void testImpStack(String tag, ImprovedStack stack){
 		long startTime = System.nanoTime();
 		
@@ -374,15 +414,33 @@ public class TestCW3 {
 		System.out.println();
 	}	
 
+	/**Removes an object(s) from a stack and tests the resulting stack against the parameters
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be tested
+	 * @param match Expected Resulting toString() after operation
+	 * @param size Expected result size after operation
+	 * @param top Expected resulting top after operation
+	 * @param removeObject Object to remove from the stack
+	 */
 	void testImprovedStackRemove(String tag, ImprovedStack stack, String match, int size, Object top, Object removeObject){
-		
 		stack.remove(removeObject);
 		testStackMatch(tag, stack, match, size, top);
-		
 	}
 	
+	
+	/**Tests the reverse() function on an improved stack and checks both the original and new stacks against the parameters
+	 * 
+	 * @param tag Identifier for the specific test to be displayed on fail
+	 * @param stack Stack object to be tested
+	 * @param matchOld Expected Resulting toString() of the original stack after operation
+	 * @param matchNew Expected Resulting toString() of the new (reversed) stack after operation
+	 * @param size Expeceted size of both stacks
+	 * @param topOld Expected resulting top  of the original stack after operation
+	 * @param topNew Expected resulting top  of the new (reversed) stack after operation
+	 */
 	void testImprovedStackReverse(String tag, ImprovedStack stack, String matchOld, String matchNew, int size, Object topOld, Object topNew){
-		
+	
 		ImprovedStack reverseStack = stack.reverse();
 		testStackMatch(tag+" Original ", stack, matchOld, size, topOld);
 		testStackMatch(tag+" Reverse ", reverseStack, matchNew, size, topNew);
