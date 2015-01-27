@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 /**
  * A sampleable list can be sampled. 
  * 

@@ -1,14 +1,14 @@
-package DataStructures;
+package datastructures;
 
 
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
+	//Functional List methods
 	@Override
 	public ReturnObject head() {
 		if (head == null) 
 			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
-		else
-			return new ReturnObjectImpl(head.value);
+		else			return new ReturnObjectImpl(head.value);
 	}
 
 	@Override

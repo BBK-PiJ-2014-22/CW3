@@ -1,8 +1,9 @@
-package DataStructures;
+package datastructures;
 
 
 public class StackImpl extends AbstractStack {
 
+	//Constructors
 	public StackImpl(List list){
 		super(list);
 	}
@@ -11,6 +12,7 @@ public class StackImpl extends AbstractStack {
 		super(new ArrayList(stack.internalList));
 	}
 	
+	//Standard methods from Object
 	@Override
 	public String toString(){
 		return internalList.toString();
@@ -21,6 +23,7 @@ public class StackImpl extends AbstractStack {
 		return internalList.isEmpty();
 	}
 
+	//Stack methods
 	@Override
 	public int size() {
 		return internalList.size();
@@ -33,11 +36,10 @@ public class StackImpl extends AbstractStack {
 
 	@Override
 	public ReturnObject top() {
-		if (this.isEmpty()){
+		if (this.isEmpty())
 			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
-		}else{
-		return internalList.get(internalList.size()-1);
-		}
+		else
+			return internalList.get(internalList.size()-1);
 	}
 
 	@Override

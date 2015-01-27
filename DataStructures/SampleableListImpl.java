@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 
 public class SampleableListImpl extends LinkedList implements SampleableList {
 
@@ -16,11 +16,8 @@ public class SampleableListImpl extends LinkedList implements SampleableList {
 				if (element.position%2 == 0){
 					returnList.add(element.value);
 				}
-			}
-			
+			}	
 		}
-		
 		return returnList;
 	}
-
 }

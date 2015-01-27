@@ -1,10 +1,14 @@
-package DataStructures;
+package datastructures;
 
-	//TODO - refactor so that ReturnObjects use the simplified constructors
+
+/*Implements the List interface using linked Nodes containing values
+ */
 
 public class LinkedList implements List {
 
 	LinkedListNode head;
+	
+	//Constructors
 	
 	public LinkedList(){
 		head = null;
@@ -13,12 +17,12 @@ public class LinkedList implements List {
 	public LinkedList(List list){
 		head = null;
 		if (list.size() != 0){
-			for (int i = 0; i <= list.size(); i++){
+			for (int i = 0; i <= list.size(); i++)
 				this.add(list.get(i).getReturnValue());
-			}
 		}
 	}
 	
+	//Standard methods from Object
 	@Override
 	public String toString(){
 		return "["+head+"]";
@@ -42,6 +46,7 @@ public class LinkedList implements List {
 		return true;
 	}
 	
+	//List Interface Methods
 	@Override
 	public boolean isEmpty() {
 		if (head == null) 
@@ -61,7 +66,7 @@ public class LinkedList implements List {
 	@Override
 	public ReturnObject get(int index) {
 		if (head == null){
-			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		}else{
 			return head.get(index);
 		}
@@ -70,7 +75,7 @@ public class LinkedList implements List {
 	@Override
 	public ReturnObject remove(int index) {
 		if (head == null){
-			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
 		}else if (index == 0){
 			LinkedListNode removed = head;
 		
@@ -78,17 +83,16 @@ public class LinkedList implements List {
 			if (head != null){
 				head.shuffleLeft();
 			}
-			return new ReturnObjectImpl(removed.value,ErrorMessage.NO_ERROR);
+			return new ReturnObjectImpl(removed.value);
 		}
-		else{
+		else
 			return head.remove(index);
-		}
 	}
 
 	@Override
 	public ReturnObject add(int index, Object item) {
 		if (head == null){
-			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
+			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 		}else{
 			return head.add(index, item);
 		}
@@ -98,7 +102,7 @@ public class LinkedList implements List {
 	public ReturnObject add(Object item) {
 		if (head == null){
 			head = new LinkedListNode(0, item);
-			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+			return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 		}else{
 			return head.add(item);
 		}

@@ -10,13 +10,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import DataStructures.ErrorMessage;
-import DataStructures.FunctionalArrayList;
-import DataStructures.FunctionalLinkedList;
-import DataStructures.FunctionalList;
-import DataStructures.ReturnObject;
-import DataStructures.ReturnObjectImpl;
-import DataStructures.FunctionalList;
+import datastructures.ErrorMessage;
+import datastructures.FunctionalArrayList;
+import datastructures.FunctionalLinkedList;
+import datastructures.FunctionalList;
+import datastructures.ReturnObject;
+import datastructures.ReturnObjectImpl;
 
 @RunWith(Parameterized.class)
 public class FunctionalListTest {

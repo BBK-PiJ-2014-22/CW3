@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 public enum ErrorMessage {
     /**
      * No error. 

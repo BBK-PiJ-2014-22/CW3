@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 
 /**
  * A wrapper containing either an object (the result of an operation

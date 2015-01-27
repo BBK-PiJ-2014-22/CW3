@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 
 
 public class ReturnObjectImpl implements ReturnObject {

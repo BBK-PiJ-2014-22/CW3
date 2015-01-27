@@ -1,4 +1,4 @@
-package DataStructures;
+package datastructures;
 
 /**
  * A functional list is a list with a few additional methods that are

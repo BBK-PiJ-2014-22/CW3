@@ -1,12 +1,13 @@
-package DataStructures;
+package datastructures;
 
-	//TODO - refactor so that ReturnObjects use the simplified constructors
 
 public class ArrayList implements List {
 	
-	protected Object[] array;
-	protected int size;
+	Object[] array;
+	int size;
 	
+	
+	//Constructors
 	public ArrayList(){
 		array = new Object[1];
 		size = 0;
@@ -20,6 +21,7 @@ public class ArrayList implements List {
 		}
 	}
 	
+	//Standard methods from Object
 	@Override
 	public boolean equals(Object object){
 		if (!(object instanceof List)) return false;
@@ -30,9 +32,8 @@ public class ArrayList implements List {
 			return false;
 		else{
 			for (int i = 0; i < this.size() ; i++){
-				if (!this.get(i).equals(list.get(i))){
+				if (!this.get(i).equals(list.get(i)))
 					return false;
-				}
 			}
 		}
 		return true;
@@ -42,20 +43,17 @@ public class ArrayList implements List {
 	public String toString(){
 		
 		String result = "[";
-		
 		if (size > 0){
-
-			for (int i = 0; i < this.size-1 ; i++){
+			for (int i = 0; i < this.size-1 ; i++)
 				result += i +":"+array[i]+", ";
-			}
 			result += size-1+":"+array[size-1];
-		}else{
+		}else
 			result += array[0];
-		}
 		result += "]";
 		return result;
 	}
 	
+	//List methods
 	@Override
 	//If any element of the list is filled, the first element will be filled
 	public boolean isEmpty() {
@@ -72,37 +70,39 @@ public class ArrayList implements List {
 
 	@Override
 	public ReturnObject get(int index) {
-		if (checkOutOfBounds(index)){
+		if (this.array[0]==null)
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+		else if (checkOutOfBounds(index))
 			return outOfBoundsError();
-		}else{
-			return new ReturnObjectImpl(array[index], ErrorMessage.NO_ERROR);
-		}
+		else
+			return new ReturnObjectImpl(array[index]);
 	}
 
 	@Override
 	public ReturnObject remove(int index) {
-		if (checkOutOfBounds(index)){
+		if (this.array[0]==null)
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+		else if (checkOutOfBounds(index))
 			return outOfBoundsError();
-		}else{
+		else{
 			Object toReturn = this.array[index];
 			int shuffle = index+1;
 			while(this.array[shuffle] != null){
 				this.array[shuffle-1] = this.array[shuffle];
 				shuffle++;
 			}
-			
 			size --;
 			if (size == 0){
 				array[0] = null;
 			}
-			return new ReturnObjectImpl(toReturn, ErrorMessage.NO_ERROR);		
+			return new ReturnObjectImpl(toReturn);		
 		}
 	}
 
 	@Override
 	public ReturnObject add(int index, Object item) {
 		if (item == null){
-			return new ReturnObjectImpl(item, ErrorMessage.INVALID_ARGUMENT);
+			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		}else if (checkOutOfBounds(index)){
 			return outOfBoundsError();
 		}else{
@@ -122,12 +122,12 @@ public class ArrayList implements List {
 	@Override
 	public ReturnObject add(Object item) {
 		if (item == null){
-			return new ReturnObjectImpl(item, ErrorMessage.INVALID_ARGUMENT);
+			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
 		}else{
 			this.checkSize();
 			this.array[size] = item;
 			this.size ++;
-			return new ReturnObjectImpl(null, ErrorMessage.NO_ERROR);
+			return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
 		}
 	}
 	
