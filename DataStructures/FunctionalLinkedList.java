@@ -1,54 +1,32 @@
 package DataStructures;
 
 
-public class FunctionalLinkedList implements FunctionalList {
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ReturnObject get(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReturnObject remove(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReturnObject add(int index, Object item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ReturnObject add(Object item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
 	@Override
 	public ReturnObject head() {
-		// TODO Auto-generated method stub
-		return null;
+		if (head == null) 
+			return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+		else
+			return new ReturnObjectImpl(head.value);
 	}
 
 	@Override
 	public FunctionalList rest() {
-		// TODO Auto-generated method stub
-		return null;
+		if (head == null)
+			return new FunctionalLinkedList();
+		else if (head.next == null)
+			return new FunctionalLinkedList();
+		else{
+			FunctionalList result = new FunctionalLinkedList();
+			for (int i = 1; i < this.size() ; i++){
+				result.add(this.get(i).getReturnValue());
+			}
+		return result;
+		}
+		
+		
+		
 	}
 
 }

@@ -49,7 +49,6 @@ public class FunctionalListTest {
 		assertEquals(new ReturnObjectImpl(0), result);		
 	}
 
-
 	@Test
 	public void headNullFunction(){
 		ReturnObject result = list.head();
@@ -85,6 +84,17 @@ public class FunctionalListTest {
 	}
 	
 	@Test
+	public void restSingleElement(){
+		TestTools.buildList(list, 0,1);
+		
+		FunctionalList rest = list.rest();		
+		FunctionalList comparison = new FunctionalArrayList();
+		
+		assertEquals(comparison, rest);
+		
+	}
+	
+	@Test
 	public void restListChangeOriginal(){
 		
 		FunctionalList match = new FunctionalArrayList();
@@ -99,7 +109,7 @@ public class FunctionalListTest {
 		
 		assertEquals(match, list);
 	}
-
+	
 	@Test
 	public void restListChangeRest(){
 		
