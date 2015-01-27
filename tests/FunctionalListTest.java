@@ -16,7 +16,7 @@ import DataStructures.FunctionalLinkedList;
 import DataStructures.FunctionalList;
 import DataStructures.ReturnObject;
 import DataStructures.ReturnObjectImpl;
-
+import DataStructures.FunctionalList;
 
 @RunWith(Parameterized.class)
 public class FunctionalListTest {
@@ -42,11 +42,11 @@ public class FunctionalListTest {
 
 	@Test
 	public void headBasicFunction() {
-		list.add(1);
-		list.add(2);
-		list.add(3);
+		
+		TestTools.buildList(list, 0, 5);		
+		
 		ReturnObject result = list.head();
-		assertEquals(new ReturnObjectImpl(1), result);		
+		assertEquals(new ReturnObjectImpl(0), result);		
 	}
 
 
@@ -63,14 +63,58 @@ public class FunctionalListTest {
 	}
 	*/
 	
-	/*@Test
+	@Test
 	public void restStandard(){
-		list.add("one");
-		list.add("two");
-		list.add("three");
 		
-		FunctionaList rest = list.rest();
+		TestTools.buildList(list, 0,5);
 		
+		FunctionalList rest = list.rest();		
+		FunctionalList comparison = new FunctionalArrayList();
 		
-	}*/
+		TestTools.buildList(comparison, 1, 5);
+		
+		assertEquals(comparison, rest);
+	}
+	
+	@Test
+	public void restEmptyList(){
+		
+		FunctionalList match = new FunctionalArrayList();
+		FunctionalList result = list.rest();
+		assertEquals(match, result);
+	}
+	
+	@Test
+	public void restListChangeOriginal(){
+		
+		FunctionalList match = new FunctionalArrayList();
+		
+		TestTools.buildList(list, 0,5);
+		TestTools.buildList(match,0,5);
+		
+
+		FunctionalList rest = list.rest();		
+		
+		TestTools.buildList(rest, 1,5);
+		
+		assertEquals(match, list);
+	}
+
+	@Test
+	public void restListChangeRest(){
+		
+		FunctionalList match = new FunctionalArrayList();
+		
+		TestTools.buildList(list, 0,5);
+		TestTools.buildList(match,1,5);
+		
+
+		FunctionalList rest = list.rest();		
+		
+		TestTools.buildList(list, 1,5);
+		
+		assertEquals(match, rest);
+	}
+	
+
 }

@@ -17,8 +17,14 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
 	@Override
 	public FunctionalList rest() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		FunctionalList result = new FunctionalArrayList();
+		
+		for (int i = 1; i < this.size ; i ++){
+			result.add(this.get(i).getReturnValue());
+		}
+		
+		return result;
 	}
 
 }
