@@ -4,22 +4,37 @@ package datastructures;
 public class ReturnObjectImpl implements ReturnObject {
 
 	private ErrorMessage error;
-	public Object returnValue;
+	private Object returnValue;
 	
+	/**Constructor for specific value and ErrorMessage
+	 * @param entry Return Value of the ReturnObject
+	 * @param error ErrorMessage of the ReturnObject
+	 */
 	public ReturnObjectImpl(Object entry, ErrorMessage error){
 		this.returnValue = entry;
 		this.error = error;
 	}
 	
+	/**Constructor containing only the value of the ReturnObject.
+	 * Error message defaults to NO_ERROR
+	 * 
+	 * @param entry Return Value of the ReturnObject
+	 */
 	public ReturnObjectImpl(Object entry){
 		this.returnValue = entry;
 		this.error = ErrorMessage.NO_ERROR;
 	}
 	
+	/**Constructor containing only the ErrorMessage of the ReturnObject.
+	 * Return Value defaults to null
+	 * 
+	 * @param error ErrorMessage of the ReturnObject
+	 */
 	public ReturnObjectImpl(ErrorMessage error){
 		this.returnValue = null;
 		this.error = error;
 	}
+	
 	
 	@Override
 	public boolean equals(Object comparison){

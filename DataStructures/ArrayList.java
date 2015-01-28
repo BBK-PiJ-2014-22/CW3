@@ -8,11 +8,17 @@ public class ArrayList implements List {
 	
 	
 	//Constructors
+	/**Default constructor. Creates an empty list.
+	 */
 	public ArrayList(){
 		array = new Object[1];
 		size = 0;
 	}
 	
+	/**Copy constructor.Creates a copy of the list.
+	 * 
+	 * @param list List to be copied.
+	 */
 	public ArrayList(List list){
 		this.array = new Object[list.size()+1];
 		this.size = 0;
@@ -23,11 +29,12 @@ public class ArrayList implements List {
 	
 	//Standard methods from Object
 	@Override
+	/**Returns true if all elements of the lists have the same value at each index
+	 */
 	public boolean equals(Object object){
 		if (!(object instanceof List)) return false;
 		
-		List list = (List) object;
-		
+		List list = (List) object;	
 		if (this.size() != list.size())
 			return false;
 		else{
@@ -40,6 +47,8 @@ public class ArrayList implements List {
 	}
 	
 	@Override
+	/**Returns a string representation [index1:value1, index2:value2 ...]
+	 */
 	public String toString(){
 		
 		String result = "[";
@@ -54,20 +63,25 @@ public class ArrayList implements List {
 	}
 	
 	//List methods
+	/**{@inheritDoc} 
+	 */
 	@Override
-	//If any element of the list is filled, the first element will be filled
 	public boolean isEmpty() {
 		if (this.array[0] == null) 
 			return true;
 		else 
 			return false;
 	}
-
+	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public int size() {
 		return size;
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject get(int index) {
 		if (this.array[0]==null)
@@ -77,7 +91,9 @@ public class ArrayList implements List {
 		else
 			return new ReturnObjectImpl(array[index]);
 	}
-
+	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject remove(int index) {
 		if (this.array[0]==null)
@@ -98,7 +114,9 @@ public class ArrayList implements List {
 			return new ReturnObjectImpl(toReturn);		
 		}
 	}
-
+	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject add(int index, Object item) {
 		if (item == null){
@@ -119,6 +137,8 @@ public class ArrayList implements List {
 		}
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject add(Object item) {
 		if (item == null){
@@ -133,7 +153,7 @@ public class ArrayList implements List {
 	
 	/**Checks the size of the current array before trying to add anything
 	 * If the size is equal to the max size of the current array, the array 
-	 * size will double and all existing elements be copied to the new array
+	 * size will increase by 50 and all existing elements be copied to the new array
 	 */
 	private void checkSize(){
 		if (this.size == array.length){
@@ -158,6 +178,4 @@ public class ArrayList implements List {
 	private ReturnObjectImpl outOfBoundsError(){
 		return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
 	}
-	
-	
 }
