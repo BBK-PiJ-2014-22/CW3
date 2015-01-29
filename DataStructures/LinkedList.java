@@ -1,7 +1,9 @@
 package datastructures;
 
 
-/*Implements the List interface using linked Nodes containing values
+/**Implements the List interface using linked Nodes containing values
+ *
+ *@author Jamie MacIver
  */
 
 public class LinkedList implements List {
@@ -9,11 +11,16 @@ public class LinkedList implements List {
 	LinkedListNode head;
 	
 	//Constructors
-	
+	/**Default constructor. Creates an empty list.
+	 */
 	public LinkedList(){
 		head = null;
 	}
-	
+
+	/**Copy constructor.Creates a copy of the list.
+	 * 
+	 * @param list List to be copied.
+	 */
 	public LinkedList(List list){
 		head = null;
 		if (list.size() != 0){
@@ -24,10 +31,14 @@ public class LinkedList implements List {
 	
 	//Standard methods from Object
 	@Override
+	/**Returns a string representation [index1:value1, index2:value2 ...]
+	 */
 	public String toString(){
 		return "["+head+"]";
 	}
 	
+	/**Returns true if all elements of the lists have the same value at each index
+	 */
 	@Override
 	public boolean equals(Object object){
 		if (!(object instanceof List)) return false;
@@ -47,6 +58,8 @@ public class LinkedList implements List {
 	}
 	
 	//List Interface Methods
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public boolean isEmpty() {
 		if (head == null) 
@@ -55,6 +68,8 @@ public class LinkedList implements List {
 			return false;
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public int size() {
 		if (head == null)
@@ -62,7 +77,9 @@ public class LinkedList implements List {
 		else 
 			return head.size();
 	}
-
+	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject get(int index) {
 		if (head == null){
@@ -71,7 +88,9 @@ public class LinkedList implements List {
 			return head.get(index);
 		}
 	}
-
+	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject remove(int index) {
 		if (head == null){
@@ -89,6 +108,8 @@ public class LinkedList implements List {
 			return head.remove(index);
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject add(int index, Object item) {
 		if (head == null){
@@ -98,6 +119,8 @@ public class LinkedList implements List {
 		}
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject add(Object item) {
 		if (head == null){

@@ -1,7 +1,10 @@
 package datastructures;
 
-//Nodes for implementation of Lists using linked nodes. See also LinkedList
-
+/**Nodes for use with the LinkedList implementation of List
+ * 
+ * @author Jamie MacIver
+ *
+ */
 public class LinkedListNode {
 
 	Object value;
@@ -9,6 +12,11 @@ public class LinkedListNode {
     LinkedListNode next;
 	
 	//Constructors
+    /**Standard constructor which adds a given node to a specific position
+     * 
+     * @param position Index in the list for the node
+     * @param value Value which the node will hold
+     */
 	public LinkedListNode(int position, Object value){
 		this.value = value;
 		this.position = position;
@@ -16,6 +24,8 @@ public class LinkedListNode {
 	}
 	
 	//Standard Methods from Object
+	/**String representation of node position:value
+	 */
 	@Override
 	public String toString(){
 		if (this.next == null){
@@ -26,6 +36,10 @@ public class LinkedListNode {
 	}
 	
 	//List methods
+	/**Returns the size of the list
+	 * 
+	 * @return size of list
+	 */
 	public int size(){ 
 		if (this.next == null)
 			return this.position+1;
@@ -33,6 +47,11 @@ public class LinkedListNode {
 			return this.next.size();
 	}
 
+	/**Returns a ReturnObject for a specific index in the list 
+	 * 
+	 * @param index Index which value should be returned
+	 * @return ReturnObject with value of specific index, or error message if out of bounds
+	 */
 	public ReturnObject get(int index) {
 		if (this.position == index)
 			return new ReturnObjectImpl(this.value);
@@ -42,6 +61,11 @@ public class LinkedListNode {
 			return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
 	}
 
+	/**Removes element at index and returns a ReturnObject with the value at that index or error message if out of bounds
+	 * 
+	 * @param index Index which value should be removed
+	 * @return ReturnObject with value of specific index, or error message if out of bounds
+	 */
 	public ReturnObject remove(int index) {
 		if (this.next == null)
 			return new ReturnObjectImpl(null, ErrorMessage.INDEX_OUT_OF_BOUNDS);
@@ -55,6 +79,12 @@ public class LinkedListNode {
 			return this.next.remove(index);
 	}
 
+	/**Insterts an element into a particular index in the list
+	 * 
+	 * @param index Point to insert value into the list
+	 * @param item Value to be added to the list
+ 	 * @return Error message of NO_ERROR or INDEX_OUT_OF_BOUNDS
+	 */
 	public ReturnObject add(int index, Object item) {
 		if (item == null)
 			return new ReturnObjectImpl(ErrorMessage.INVALID_ARGUMENT);
@@ -69,6 +99,12 @@ public class LinkedListNode {
 		}else
 			return this.next.add(index, item);			
 	}
+	
+	/**Adds an item to the end of the list
+	 * 
+	 * @param item Object to be added to the list
+	 * @return ReturnObject with error message of NO_ERROR or INVALID_ARGUMENT if a null element is added
+	 */
 
 	public ReturnObject add(Object item) {
 		if (item == null){
@@ -80,7 +116,8 @@ public class LinkedListNode {
 			return this.next.add(item);
 	}
 	
-	//Moves all nodes 1 position to the right
+	/**Shuffles all nodes 1 position to the right. Used as part of insert method
+	 */
 	void shuffleRight(){
 		this.position ++;
 		if (this.next != null){
@@ -88,7 +125,8 @@ public class LinkedListNode {
 		}
 	}
 	
-	//Moves all nodes 1 position to the left
+	/**Shuffles all nodes 1 position to the left. Used as part of remove method
+	 */
 	void shuffleLeft(){
 		this.position --;
 		if (this.next != null){

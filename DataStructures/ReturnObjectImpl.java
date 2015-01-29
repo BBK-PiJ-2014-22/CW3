@@ -1,5 +1,10 @@
 package datastructures;
 
+/**	{@inheritDoc} 
+ * 
+ * @author Jamie
+ *
+ */
 
 public class ReturnObjectImpl implements ReturnObject {
 
@@ -35,7 +40,8 @@ public class ReturnObjectImpl implements ReturnObject {
 		this.error = error;
 	}
 	
-	
+	/**Will return true if error message and value are identical, false otherwise
+	 */
 	@Override
 	public boolean equals(Object comparison){
 		if (comparison instanceof ReturnObject){
@@ -48,17 +54,23 @@ public class ReturnObjectImpl implements ReturnObject {
 		return false;
 	}
 	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public boolean hasError() {
 		if (error == ErrorMessage.NO_ERROR) return false;
 		else return true;
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ErrorMessage getError() {
 		return error;
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public Object getReturnValue() {
 		if (this.hasError()){
@@ -68,6 +80,8 @@ public class ReturnObjectImpl implements ReturnObject {
 		}
 	}
 	
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public String toString(){
 		return "[Return Value: "+this.returnValue+", Error Message: "+this.error+", Has Error: "+this.hasError()+"]";

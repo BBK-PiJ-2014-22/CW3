@@ -1,5 +1,11 @@
 package datastructures;
 
+/**{@inheritDoc} 
+ * 
+ * Implements the List interface using arrays
+ * 
+ * @author Jamie MacIver
+ */
 
 public class ArrayList implements List {
 	

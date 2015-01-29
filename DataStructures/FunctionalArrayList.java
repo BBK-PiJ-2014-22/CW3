@@ -1,9 +1,16 @@
 package datastructures;
 
+/**	{@inheritDoc} 
+ * 
+ * @author Jamie MacIver
+ *
+ */
 
 public class FunctionalArrayList extends ArrayList implements FunctionalList {
 
 	//Functional Array List methods
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject head() {
 		Object toReturn = array[0];
@@ -13,6 +20,8 @@ public class FunctionalArrayList extends ArrayList implements FunctionalList {
 			return new ReturnObjectImpl(toReturn);
 	}
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public FunctionalList rest() {
 		

@@ -1,9 +1,16 @@
 package datastructures;
 
+/**	{@inheritDoc} 
+ * 
+ * @author Jamie MacIver
+ *
+ */
 
 public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 
 	//Functional List methods
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public ReturnObject head() {
 		if (head == null) 
@@ -12,6 +19,8 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 	}
 
 	@Override
+	/**{@inheritDoc} 
+	 */
 	public FunctionalList rest() {
 		if (head == null)
 			return new FunctionalLinkedList();
@@ -24,9 +33,6 @@ public class FunctionalLinkedList extends LinkedList implements FunctionalList {
 			}
 		return result;
 		}
-		
-		
-		
 	}
-
+	
 }

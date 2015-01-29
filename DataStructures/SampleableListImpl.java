@@ -1,7 +1,14 @@
 package datastructures;
+/**{@inheritDoc} 
+ * 
+ * @author Jamie MacIver
+ *
+ */
 
 public class SampleableListImpl extends LinkedList implements SampleableList {
 
+	/**{@inheritDoc} 
+	 */
 	@Override
 	public SampleableList sample() {
 		

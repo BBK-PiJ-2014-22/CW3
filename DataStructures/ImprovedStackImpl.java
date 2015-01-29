@@ -1,5 +1,12 @@
 package datastructures;
 
+/**{@inheritDoc}
+ * 
+ * Implementation of ImprovedStack using internal AbstractStack
+ * 
+ * @author Jamie MacIver
+ *
+ */
 
 public class ImprovedStackImpl implements ImprovedStack, Stack {
 
@@ -31,13 +38,17 @@ public class ImprovedStackImpl implements ImprovedStack, Stack {
 	}
 	
 	//Standard methods inherited from Object
-	/**Returns a string representation [index1:value1, index2:value2 ...]
+	/**Returns a string representation [index1:value1, index2:value2 ...] with top as final element
 	 */
 	@Override
 	public String toString(){
 		return mainStack.toString();
 	}
 	
+	/**Returns true if object is an implementation of AbstractStack or ImprovedStackImpl and all elements are identical
+	 * 
+	 * @param object Object to compare to
+	 */
 	@Override
 	public boolean equals(Object object){
 		return mainStack.equals(object);
